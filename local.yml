@@ -25,7 +25,7 @@ services:
     build:
       context: .
       dockerfile: ./docker/local/postgres/Dockerfile
-    image: estate_prod_postrges
+    image: estate_prod_postgres
     container_name: estate_prod_postgres
     ports:
       - "5432:5432"
@@ -42,16 +42,16 @@ services:
     ports:
       - "8025:8025"
       - "1025:1025"
-    volumes:
+    volumes:  
       - estate_prod_mailpit_data:/data
     environment:
       MP_MAX_MESSAGES: 5000
       MP_DATA_FILE: /data/mailpit.db
       MP_SMTP_AUTH_ACCEPT_ANY: 1
-      MP_SMTP_AUTH_ALLOW_INSECURE: 1
+      MP_SMTP_AUTH_ALLOW_INSECURE: 1  
     networks:
       - estate_prod_nw
-  
+
 networks:
   estate_prod_nw:
     external: true
