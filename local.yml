@@ -13,7 +13,7 @@ services:
     # ports:
     #   - "8000:8000"
     expose:
-      - "8000:8000"
+      - "8000"
     env_file:
       - ./.envs/.env.local
     depends_on:
@@ -53,7 +53,7 @@ services:
       MP_SMTP_AUTH_ALLOW_INSECURE: 1  
     networks:
       - estate_prod_nw
-  
+
   client:
     build:
       context: ./client
@@ -69,7 +69,7 @@ services:
       - /app/node_modules
     networks:
       - estate_prod_nw
-
+  
   nginx:
     build:
       context: ./docker/local/nginx
@@ -84,7 +84,8 @@ services:
     depends_on:
       - api
     networks:
-      - estate_prod_nw  
+      - estate_prod_nw
+    
 
 networks:
   estate_prod_nw:
@@ -94,3 +95,4 @@ volumes:
   estate_prod_postgres_data: {}
   estate_prod_mailpit_data: {}
   logs_store: {}
+
