@@ -16,9 +16,11 @@ DEBUG = True
 SITE_NAME = getenv("SITE_NAME")
 
 SECRET_KEY = getenv(
-    "DJANGO_SECRET_KEY",
-    "AbVLCqkZJ64e_VtJArsFhEkaQ5grY-I0AgmVlFRrfV6d7K7hOtQ"
+    "DJANGO_SECRET_KEY", "UUc-qwrxzkZFyx4mrxXFfgHpA1VLOIuAojmk8T9q7n35A6-k-yM"
 )
+
+CSRF_TRUSTED_ORIGINS = ["http://localhost:8080"]
+
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", "0.0.0.0"]
 
@@ -34,14 +36,14 @@ LOGGING = {
     "disable_existing_loggers": False,
     "formatters": {
         "verbose": {
-            "format": "%(levelname)s %(name)-12s %(asctime)s %(module)s %(process)d %(thread)d %(message)s" # noqa
+            "format": "%(levelname)s %(name)-12s %(asctime)s %(module)s %(process)d %(thread)d %(message)s"
         }
     },
     "handlers": {
         "console": {
             "level": "DEBUG",
             "class": "logging.StreamHandler",
-            "formatter": "verbose"
+            "formatter": "verbose",
         }
     },
     "root": {"level": "INFO", "handlers": ["console"]},
