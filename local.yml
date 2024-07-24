@@ -68,6 +68,7 @@ services:
     volumes:
       - ./client:/app
       - /app/node_modules
+      - WATCHPACK_POLLING=true
     networks:
       - estate_prod_nw
 
