@@ -232,7 +232,7 @@ SIMPLE_JWT = {
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
     "ROTATE_REFRESH_TOKENS": True,
     "USER_ID_FIELD": "id",
-    "USER_ID_CLAIM": "user_id"
+    "USER_ID_CLAIM": "user_id",
 }
 
 DJOSER = {
@@ -245,9 +245,9 @@ DJOSER = {
     "PASSWORD_RESET_CONFIRM_RETYPE": True,
     "ACTIVATION_URL": "activate/{uid}/{token}",
     "PASSWORD_RESET_CONFIRM_URL": "password-reset/{uid}/{token}",
-    "SOCIAL_AUTH_ALLOWED_REDICRED_URIS": getenv("REDIRECT_URIS", "").split(","),
+    "SOCIAL_AUTH_ALLOWED_REDIRECT_URIS": getenv("REDIRECT_URIS", "").split(","),
     "SERIALIZERS": {
-        "user_create": "core_apps.users.serializes.CreateUserSerializer"
+        "user_create": "core_apps.users.serializers.CreateUserSerializer",
     },
 }
 
@@ -256,6 +256,11 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = getenv("GOOGLE_CLIENT_SECRET")
 SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
     "https://www.googleapis.com/auth/userinfo.email",
     "https://www.googleapis.com/auth/userinfo.profile",
-    "openid"
+    "openid",
 ]
 SOCIAL_AUTH_GOOGLE_OAUTH2_EXTRA_DATA = ["first_name", "last_name"]
+
+AUTHENTICATION_BACKENDS = [
+    "social_core.backends.google.GoogleOAuth2",
+    "django.contrib.auth.backends.ModelBackend",
+]
