@@ -46,7 +46,6 @@ class IssueListAPIView(generics.ListAPIView):
 class AssignedIssuesListView(generics.ListAPIView):
     serializer_class = IssueSerializer
     renderer_classes = [GenericJSONRenderer]
-    permission_classes = [IsStaffOrSuperUser]
     object_label = "assigned_issues"
 
     def get_queryset(self):

@@ -22,7 +22,7 @@ class Issue(TimeStampedModel):
     class IssueStatus(models.TextChoices):
         REPORTED = ("reported", _("Reported"))
         RESOLVED = ("resolved", _("Resolved"))
-        IN_RROGRESS = ("in_progress", _("In Progress"))
+        IN_PROGRESS = ("in_progress", _("In Progress"))
 
     class Priority(models.TextChoices):
         LOW = ("low", _("Low"))
@@ -39,7 +39,7 @@ class Issue(TimeStampedModel):
         User,
         on_delete=models.CASCADE,
         related_name="report_by_issues",
-        verbose_name="Report By"
+        verbose_name=_("Report By")
     )
     assigned_to = models.ForeignKey(
         User,
@@ -47,7 +47,7 @@ class Issue(TimeStampedModel):
         null=True,
         blank=True,
         related_name="assigned_to_issues",
-        verbose_name="Assigned to"
+        verbose_name=_("Assigned to")
     )
     title = models.CharField(verbose_name=_("Issue Title"), max_length=255)
     description = models.TextField(verbose_name=_("Issue Description"))

@@ -28,7 +28,7 @@ class IssueSerializer(serializers.ModelSerializer):
 class IssueStatusUpdateSerializer(serializers.ModelSerializer):
     apartment = serializers.ReadOnlyField(source="apartment.unit_number")
     reported_by = serializers.ReadOnlyField(source="reported_by.get_full_name")
-    resolved_by = serializers.ReadOnlyField(source="reported_by.get_full_name")
+    resolved_by = serializers.ReadOnlyField(source="resolved_by.get_full_name")
 
     class Meta:
         model = Issue
