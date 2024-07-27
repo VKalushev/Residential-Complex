@@ -53,7 +53,7 @@ class Profile(TimeStampedModel):
         return self.report_count >= 5
     
     def update_reputation(self):
-        self.reputation = max(0,100 - self.report_count*2)
+        self.reputation = max(0,100 - self.report_count*20)
 
     def save(self,*args, **kwargs):
         self.update_reputation()
