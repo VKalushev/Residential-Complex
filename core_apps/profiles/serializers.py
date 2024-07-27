@@ -15,6 +15,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     date_joined = serializers.DateTimeField(
         source="user.date_joined", read_only=True)
     apartment = serializers.SerializerMethodField()
+    average_rating = serializers.SerializerMethodField()
 
     class Meta:
         model = Profile
@@ -31,7 +32,8 @@ class ProfileSerializer(serializers.ModelSerializer):
                   "reputation",
                   "date_joined",
                   "avatar",
-                  "apartment"
+                  "apartment",
+                  "average_rating"
                 ]
 
     def get_avatar(self, object: Profile) -> str | None:
@@ -39,6 +41,9 @@ class ProfileSerializer(serializers.ModelSerializer):
             return object.avatar.url
         except AttributeError:
             return None
+        
+    def get_average_rating(self,obj:Profile):
+        return obj.get_average_rating()
         
     def get_apartment(self, obj: Profile) -> None:
         apartment = obj.user.apartment.first()
